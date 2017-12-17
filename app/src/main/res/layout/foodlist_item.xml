@@ -55,7 +55,6 @@
             </RelativeLayout>
 
 
-
             <RatingBar
                 android:id="@+id/foodStar"
                 android:layout_width="wrap_content"
