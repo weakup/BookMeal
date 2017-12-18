@@ -46,7 +46,6 @@ public class CommodityFragment extends Fragment {
         initData();
         initView(view);
     }
-
     private void initView(View v){
 
         mRecycleView = v.findViewById(R.id.foodlist);
@@ -54,6 +53,7 @@ public class CommodityFragment extends Fragment {
         mRecycleView.setHasFixedSize(true);
         foodListAdapter = new FoodListAdapter();
         foodListAdapter.setShoplist(foodlist);
+        foodListAdapter.notifyDataSetChanged();
         mRecycleView.setAdapter(foodListAdapter);
 
     }

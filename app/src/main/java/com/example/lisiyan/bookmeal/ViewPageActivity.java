@@ -1,5 +1,6 @@
 package com.example.lisiyan.bookmeal;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.design.widget.TabLayout;
@@ -12,10 +13,13 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.TextView;
 
+import com.example.lisiyan.bookmeal.model.FoodModel;
+import com.example.lisiyan.bookmeal.view.BuyCarFragmnt;
 import com.example.lisiyan.bookmeal.view.CommodityFragment;
 import com.example.lisiyan.bookmeal.view.HomeFragment;
 import com.example.lisiyan.bookmeal.view.MeFragment;
 
+import java.io.Serializable;
 import java.util.List;
 
 /**
@@ -27,12 +31,13 @@ public class ViewPageActivity extends AppCompatActivity{
     private ViewPager mViewPager;
     private TabLayout mTabLayout;
     private MyFragmentPagerAdapter mPagerAdapter;
+    BuyCarFragmnt mBuyCarFragmnt = new BuyCarFragmnt();
     //Tab 文字
     private final int[] TAB_TITLES = new int[]{R.string.home,R.string.commodity,R.string.shopping,R.string.my};
     //Tab 图片
     private final int[] TAB_IMGS = new int[]{R.drawable.ic_launcher,R.drawable.ic_launcher,R.drawable.ic_launcher,R.drawable.ic_launcher};
     //Fragment 数组
-    private final Fragment[] TAB_FRAGMENTS = new Fragment[] {new HomeFragment(),new CommodityFragment(),new CommodityFragment(),new MeFragment()};
+    private final Fragment[] TAB_FRAGMENTS = new Fragment[] {new HomeFragment(),new CommodityFragment(),mBuyCarFragmnt,new MeFragment()};
     //Tab 数目
     private final int COUNT = TAB_TITLES.length;
 
@@ -90,6 +95,17 @@ public class ViewPageActivity extends AppCompatActivity{
         public int getCount() {
             return COUNT;
         }
+
+    }
+
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        List<FoodModel> foodModels = (List<FoodModel>) data.getExtras().getSerializable("foolModels");//得到新Activity 关闭后返回的数据
+        Bundle  bundle = new Bundle();
+        bundle.putSerializable("foodlist", (Serializable) foodModels);
+        mBuyCarFragmnt.setArguments(bundle);
 
     }
 }
