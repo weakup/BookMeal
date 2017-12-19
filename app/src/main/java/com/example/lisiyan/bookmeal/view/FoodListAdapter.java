@@ -1,13 +1,17 @@
 package com.example.lisiyan.bookmeal.view;
 
+import android.content.Context;
+import android.content.Intent;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.LinearLayout;
 import android.widget.RatingBar;
 import android.widget.TextView;
 
 import com.example.lisiyan.bookmeal.R;
+import com.example.lisiyan.bookmeal.ShopActivity;
 import com.example.lisiyan.bookmeal.Utils.RandomUtils;
 
 import java.util.List;
@@ -20,6 +24,16 @@ public class FoodListAdapter extends RecyclerView.Adapter<FoodListAdapter.ViewHo
 
 
     private List<String> shoplist;
+    private OnItemClickListener mOnItemClickListener;
+
+    public interface OnItemClickListener{
+        void onClick( int position);
+    }
+
+    public void setOnItemClickListener(OnItemClickListener onItemClickListener ){
+        this.mOnItemClickListener=onItemClickListener;
+    }
+
 
     @Override
     public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
@@ -38,7 +52,7 @@ public class FoodListAdapter extends RecyclerView.Adapter<FoodListAdapter.ViewHo
     }
 
     @Override
-    public void onBindViewHolder(ViewHolder holder, int position) {
+    public void onBindViewHolder(ViewHolder holder, final int position) {
 
         holder.mTextView.setText(shoplist.get(position));
         holder.mMoneyTextView.setText("¥"+ RandomUtils.randomNumber(20,50)+"起送|配送费¥"+RandomUtils.randomNumber(3,10));
@@ -46,6 +60,15 @@ public class FoodListAdapter extends RecyclerView.Adapter<FoodListAdapter.ViewHo
         int time = distance * 15;
         holder.mDatTextView.setText(distance+"km|"+time+"分钟");
         holder.mRatingBar.setRating(RandomUtils.randomNumber(3,5));
+        if (mOnItemClickListener != null){
+            holder.foodlist_layout.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+
+                    mOnItemClickListener.onClick(position);
+                }
+            });
+        }
     }
 
     @Override
@@ -59,6 +82,7 @@ public class FoodListAdapter extends RecyclerView.Adapter<FoodListAdapter.ViewHo
         public TextView mMoneyTextView;
         public TextView mDatTextView;
         public RatingBar mRatingBar;
+        private LinearLayout foodlist_layout;
 
         public ViewHolder(View itemView) {
             super(itemView);
@@ -66,6 +90,7 @@ public class FoodListAdapter extends RecyclerView.Adapter<FoodListAdapter.ViewHo
             mMoneyTextView = itemView.findViewById(R.id.money);
             mDatTextView = itemView.findViewById(R.id.distanceAndTime);
             mRatingBar = itemView.findViewById(R.id.foodStar);
+            foodlist_layout = itemView.findViewById(R.id.foodlist_layout);
 
         }
     }

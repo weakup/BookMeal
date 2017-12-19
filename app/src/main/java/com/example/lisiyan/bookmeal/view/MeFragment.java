@@ -41,8 +41,8 @@ public class MeFragment extends Fragment {
     @Override
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        initData();
-        initView(view);
+//        initData();
+//        initView(view);
     }
 
     private void initView(View v){

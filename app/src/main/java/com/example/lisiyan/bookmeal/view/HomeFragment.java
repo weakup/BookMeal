@@ -43,12 +43,75 @@ public class HomeFragment extends Fragment {
     private void bindView(View view){
 
         meishi = view.findViewById(R.id.meishi);
+        wancan = view.findViewById(R.id.wancan);
+        bianli = view.findViewById(R.id.bianli);
+        zacuan = view.findViewById(R.id.zacuan);
+        guoshu = view.findViewById(R.id.guoshu);
+        xindian = view.findViewById(R.id.xindian);
+        dazhe = view.findViewById(R.id.dazhe);
+        tianpin = view.findViewById(R.id.tianpin);
 
     }
 
     private void initLinstener(){
 
         meishi.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent =new Intent(getActivity(), ShopActivity.class);
+                startActivityForResult(intent,1);
+            }
+        });
+
+        wancan.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent =new Intent(getActivity(), ShopActivity.class);
+                startActivityForResult(intent,1);
+            }
+        });
+
+        bianli.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent =new Intent(getActivity(), ShopActivity.class);
+                startActivityForResult(intent,1);
+            }
+        });
+
+        zacuan.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent =new Intent(getActivity(), ShopActivity.class);
+                startActivityForResult(intent,1);
+            }
+        });
+
+        guoshu.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent =new Intent(getActivity(), ShopActivity.class);
+                startActivityForResult(intent,1);
+            }
+        });
+
+        xindian.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent =new Intent(getActivity(), ShopActivity.class);
+                startActivityForResult(intent,1);
+            }
+        });
+
+        dazhe.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent =new Intent(getActivity(), ShopActivity.class);
+                startActivityForResult(intent,1);
+            }
+        });
+
+        tianpin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent intent =new Intent(getActivity(), ShopActivity.class);

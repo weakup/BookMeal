@@ -9,6 +9,8 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
+import android.widget.Toast;
 
 import com.example.lisiyan.bookmeal.R;
 import com.example.lisiyan.bookmeal.model.FoodModel;
@@ -26,17 +28,11 @@ public class BuyCarFragmnt extends Fragment {
     private List<FoodModel> mFoodModels = new ArrayList<>();
     private BuyCarListAdapter mBuyCarListAdapter;
     private RecyclerView mRecyclerView;
+    private Button jiezhang;
 
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-
-        if (getArguments() !=null && getArguments().getSerializable("foodlist") != null){
-            mFoodModels.clear();
-            mFoodModels.addAll((Collection<? extends FoodModel>) getArguments().getSerializable("foodlist"));
-            Log.d("buycar",mFoodModels.get(0).getName());
-        }
-
         return inflater.inflate(R.layout.buycar_fragment, container, false);
     }
 
@@ -54,8 +50,30 @@ public class BuyCarFragmnt extends Fragment {
         mRecyclerView.setHasFixedSize(true);
         mBuyCarListAdapter = new BuyCarListAdapter();
         mBuyCarListAdapter.setBuycarList(mFoodModels);
-        mBuyCarListAdapter.notifyDataSetChanged();
         mRecyclerView.setAdapter(mBuyCarListAdapter);
+        jiezhang = v.findViewById(R.id.jiesuan);
+        jiezhang.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Toast.makeText(getActivity(),"付款成功，骑手正在送货",Toast.LENGTH_LONG).show();
+                mFoodModels.clear();
+                mBuyCarListAdapter.notifyDataSetChanged();
+                jiezhang.setVisibility(View.GONE);
+            }
+        });
+    }
+
+    public void updataData(List<FoodModel> foodModels){
+        mFoodModels.clear();
+        mFoodModels.addAll(foodModels);
+        mBuyCarListAdapter.notifyDataSetChanged();
+        if (foodModels.isEmpty()){
+
+            jiezhang.setVisibility(View.GONE);
+        }else {
+
+            jiezhang.setVisibility(View.VISIBLE);
+        }
     }
 
 }

@@ -56,6 +56,7 @@ public class ViewPageActivity extends AppCompatActivity{
 
         mPagerAdapter = new MyFragmentPagerAdapter(getSupportFragmentManager());
         mViewPager = findViewById(R.id.viewpager);
+        mViewPager.setOffscreenPageLimit(3);
         mViewPager.setAdapter(mPagerAdapter);
         mViewPager.addOnPageChangeListener(new TabLayout.TabLayoutOnPageChangeListener(mTabLayout));
         mTabLayout.setOnTabSelectedListener(new TabLayout.ViewPagerOnTabSelectedListener(mViewPager));
@@ -103,9 +104,9 @@ public class ViewPageActivity extends AppCompatActivity{
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
         List<FoodModel> foodModels = (List<FoodModel>) data.getExtras().getSerializable("foolModels");//得到新Activity 关闭后返回的数据
-        Bundle  bundle = new Bundle();
-        bundle.putSerializable("foodlist", (Serializable) foodModels);
-        mBuyCarFragmnt.setArguments(bundle);
+        mBuyCarFragmnt.updataData(foodModels);
 
     }
+
+
 }
