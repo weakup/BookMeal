@@ -49,7 +49,7 @@ public class ShopAdapter extends RecyclerView.Adapter<ShopAdapter.ViewHolder>{
             public void onClick(View v) {
 
                 int count = countlist.get(position).getCount()-1;
-                if (count > 0) {
+                if (count >= 0) {
                     countlist.get(position).setCount(count);
                     holder.count.setText(String.valueOf(count));
                     Log.d("shop", String.valueOf(holder.getLayoutPosition()));

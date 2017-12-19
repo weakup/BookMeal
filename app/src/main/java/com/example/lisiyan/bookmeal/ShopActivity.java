@@ -44,7 +44,7 @@ public class ShopActivity extends AppCompatActivity {
             FoodModel foodModel = new FoodModel();
             foodModel.setName(RandomUtils.foods[i]);
             foodModel.setMoney(RandomUtils.randomNumber(10,30));
-            foodModel.setCount(1);
+            foodModel.setCount(0);
             foodModels.add(foodModel);
 
         }

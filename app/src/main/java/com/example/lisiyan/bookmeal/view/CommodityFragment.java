@@ -26,7 +26,7 @@ public class CommodityFragment extends Fragment {
     RecyclerView mRecycleView;
     FoodListAdapter foodListAdapter;
 
-    String food ="蒸羊羔、蒸熊掌、蒸鹿尾儿、烧花鸭、烧雏鸡、烧子鹅、卤猪、卤鸭、酱鸡、腊肉、松花小肚儿、晾肉、香肠儿、什锦苏盘、熏鸡白肚儿、清蒸八宝猪";
+    String food ="肯德基、全聚德";
 
     private List<String> foodlist;
 
